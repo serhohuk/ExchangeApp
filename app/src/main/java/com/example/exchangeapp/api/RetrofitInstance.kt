@@ -8,6 +8,8 @@ import retrofit2.http.HTTP
 
 object RetrofitInstance {
 
+    const val API_KEY ="544f24c5e5d57fe46ac5"
+
     private const val BASE_URL = "https://free.currconv.com"
 
     private val retrofit by lazy {
