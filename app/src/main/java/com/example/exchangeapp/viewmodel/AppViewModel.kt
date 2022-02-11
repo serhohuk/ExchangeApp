@@ -10,9 +10,7 @@ import com.example.exchangeapp.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class AppViewModel() : ViewModel() {
-
-    private var repository : MainRepository = MainRepository()
+class AppViewModel(private var repository: MainRepository) : ViewModel() {
 
     val currenciesListData = MutableLiveData<Resource<List<Currency>>>();
 

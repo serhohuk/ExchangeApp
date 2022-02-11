@@ -15,9 +15,9 @@ class ExchangeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ItemCurrencyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        lateinit var currencyName : TextView
-        lateinit var currencyId : TextView
-        lateinit var currencySymbol : TextView
+        var currencyName : TextView
+        var currencyId : TextView
+        var currencySymbol : TextView
 
         init {
             currencyName = itemView.findViewById(R.id.tv_currency_name)
@@ -29,7 +29,13 @@ class ExchangeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             currencyName.text = currency.currencyName
             currencyId.text = currency.id
             currencySymbol.text = currency.currencySymbol ?: "_"
+
+            setOnClickListener {
+                onItemClickListener?.let { it(currency) }
+            }
+
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -61,6 +67,12 @@ class ExchangeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             return 0
         }
         return 1
+    }
+
+    private var onItemClickListener : ((Currency)->Unit)? = null
+
+    fun setOnClickListener(listener : (Currency)->Unit){
+        onItemClickListener = listener
     }
 
 

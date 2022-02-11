@@ -13,10 +13,16 @@
         <action
             android:id="@+id/action_currenciesFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.exchangeapp.ui.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="argCurrency"
+            app:argType="com.example.exchangeapp.data.Currency" />
+    </fragment>
 </navigation>
