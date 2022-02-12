@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/serhh/AndroidStudioProjects/ExchangeApp2/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/serhh/AndroidStudioProjects/ExchangeApp2/app/src/main/res/layout/fragment_currencies.xml" value="0.4" />
+        <entry key="..\:/Users/serhh/AndroidStudioProjects/ExchangeApp2/app/src/main/res/layout/fragment_result.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/serhh/AndroidStudioProjects/ExchangeApp2/app/src/main/res/layout/item_currency.xml" value="0.4" />
+        <entry key="..\:/Users/serhh/AndroidStudioProjects/ExchangeApp2/app/src/main/res/layout/pairs_currency.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

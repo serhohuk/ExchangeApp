@@ -3,6 +3,7 @@ package com.example.exchangeapp.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.exchangeapp.application.MyApp
+
 
 class CurrenciesFragment : Fragment() {
 
@@ -77,7 +81,9 @@ class CurrenciesFragment : Fragment() {
 
         })
 
+
         adapter.setOnClickListener {
+            viewModel.insertCurrency(it)
             val action = CurrenciesFragmentDirections.actionCurrenciesFragmentToResultFragment(it)
             findNavController().navigate(action)
         }
@@ -86,7 +92,8 @@ class CurrenciesFragment : Fragment() {
             etSearch.editText?.setText("")
         }
 
-        viewModel.getCurrenciesList()
+
+        initData()
         viewModel.currenciesListData.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Succes->{
@@ -132,6 +139,22 @@ class CurrenciesFragment : Fragment() {
         adapter = ExchangeAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            LinearLayoutManager.VERTICAL)
+        recyclerView.addItemDecoration(dividerItemDecoration)
+    }
+
+    private fun initData(){
+        if (MyApp.instance.checkForInternet(requireContext())){
+            viewModel.getCurrenciesList()
+        }else {
+            viewModel.readAllCurrency.observe(viewLifecycleOwner, Observer{
+                adapter.list.addAll(it)
+                adapter.notifyDataSetChanged()
+
+            })
+        }
     }
 
 
